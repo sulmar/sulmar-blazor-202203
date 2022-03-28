@@ -3,17 +3,17 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.1.32319.34
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shopper.BlazorServerSide", "Shopper.BlazorServerSide\Shopper.BlazorServerSide.csproj", "{7D8E9034-E56E-4C6D-AED0-20B13FBE35C2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Shopper.BlazorServerSide", "Shopper.BlazorServerSide\Shopper.BlazorServerSide.csproj", "{7D8E9034-E56E-4C6D-AED0-20B13FBE35C2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shopper.ConsoleClient", "Shopper.ConsoleClient\Shopper.ConsoleClient.csproj", "{9854FBC0-9404-4BD0-874F-7E87C2380C1F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Shopper.ConsoleClient", "Shopper.ConsoleClient\Shopper.ConsoleClient.csproj", "{9854FBC0-9404-4BD0-874F-7E87C2380C1F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shopper.Domain", "Shopper.Domain\Shopper.Domain.csproj", "{5D8598D8-56D3-460B-8911-554D5C86992E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Shopper.Domain", "Shopper.Domain\Shopper.Domain.csproj", "{5D8598D8-56D3-460B-8911-554D5C86992E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shopper.Infrastructure", "Shopper.Infrastructure\Shopper.Infrastructure.csproj", "{77295E82-82FF-4EEC-B86C-7D9B23D7ECF5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Shopper.Infrastructure", "Shopper.Infrastructure\Shopper.Infrastructure.csproj", "{77295E82-82FF-4EEC-B86C-7D9B23D7ECF5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shopper.BlazorWebAssembly", "Shopper.BlazorWebAssembly\Shopper.BlazorWebAssembly.csproj", "{A85916C4-13F5-4FDF-96DB-382E08B03C95}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Shopper.BlazorWebAssembly", "Shopper.BlazorWebAssembly\Shopper.BlazorWebAssembly.csproj", "{A85916C4-13F5-4FDF-96DB-382E08B03C95}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shopper.Api", "Shopper.Api\Shopper.Api.csproj", "{A46D7B22-C626-461A-9D4F-AF3228639623}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Shopper.Api", "Shopper.Api\Shopper.Api.csproj", "{A46D7B22-C626-461A-9D4F-AF3228639623}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
