@@ -12,23 +12,19 @@
 </ul>
 *@
 
-<table>
+<table class="table table-hover">
     <thead>
         <tr>
-            <th>Name</th>
-            <th>Color</th>
-            <th>Price</th>
+            <th scope="col">Name</th>
+            <th scope="col">Color</th>
+            <th scope="col">Price</th>
         </tr>
     </thead>
 
     <tbody>
         @foreach(var product in products)
         {
-            <tr>
-                <td>@product.Name</td>
-                <td>@product.Color</td>
-                <td>@product.Price</td>
-            </tr>
+           <ProductItemComponent Product=@product />
         }
     </tbody>
 
