@@ -1,15 +1,5 @@
 ﻿namespace Shopper.Domain.Models;
 
-public abstract class Base
-{
-
-}
-
-public abstract class BaseEntity : Base
-{
-    public int Id { get; set; }
-}
-
 public class Product : BaseEntity
 {
     public string Name { get; set; }
