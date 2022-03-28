@@ -37,6 +37,14 @@ namespace Shopper.Infrastructure
             return Task.FromResult(_products.Values.AsEnumerable());
         }
 
+        public Task<IEnumerable<Product>> GetByColor(string color)
+        {
+            var list = _products.Values
+                .Where(p => p.Color.Equals(color, StringComparison.OrdinalIgnoreCase));
+
+            return Task.FromResult(list);
+        }
+
         public Task<Product> GetByIdAsync(int id)
         {
             if (_products.TryGetValue(id, out var product))

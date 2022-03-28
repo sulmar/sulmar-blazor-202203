@@ -3,6 +3,11 @@
 
 <h3>Products</h3>
 
+
+<SearchBarComponent OnSearch="HandleSearch" />
+
+@*<SearchBarComponent OnSearch="async ()=> products = await productRepository.GetByColor(filter)" />*@
+
 @*
     <ul class="list-group">
     @foreach(var product in products)
@@ -22,10 +27,21 @@
     </thead>
 
     <tbody>
-        @foreach(var product in products)
+
+        @if (products.Any())
         {
-           <ProductItemComponent Product=@product />
+            @foreach (var product in products)
+            {
+                <ProductItemComponent Product=@product />
+            }
         }
+        else
+        {
+            <tr>
+                <td colspan="3" >Cannot find products</td>
+            </tr>
+        }
+
     </tbody>
 
     <tfoot>
@@ -38,11 +54,21 @@
 @code {
     private IEnumerable<Product> products;
 
-
     protected override async Task OnInitializedAsync()
     {
         products = await productRepository.GetAsync();
     }
+
+    private async Task HandleSearch(string filter)
+    {
+        if (string.IsNullOrEmpty(filter))
+        {
+            products = await productRepository.GetAsync();
+        }
+        else
+            products = await productRepository.GetByColor(filter);
+    }
+
 }
 
 

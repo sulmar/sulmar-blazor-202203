@@ -10,5 +10,7 @@ public interface IProductRepository
     Task UpdateAsync(Product product);
     Task RemoveAsync(int id);
     Task<bool> ExistsAsync(int id);
+
+    Task<IEnumerable<Product>> GetByColor(string color);
 }
 
