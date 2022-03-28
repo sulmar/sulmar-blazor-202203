@@ -1,22 +1,47 @@
 ﻿@page "/products"
 
+
 @inject IProductService productService
 
 <h3>Product List</h3>
 
-@if (products != null)
-{
-    <ul>
-        @foreach (var product in products)
+
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Color</th>
+            <th scope="col">Price</th>
+        </tr>
+    </thead>
+
+    <tbody>
+
+        @if (products!=null && products.Any())
         {
-            <li>@product.Name</li>
+            @foreach (var product in products)
+            {
+                
+                <ProductItemComponent Product=@product />
+            }
         }
-    </ul>
-}
+        else
+        {
+            <tr>
+                <td colspan="3" >Cannot find products</td>
+            </tr>
+        }
+
+    </tbody>
+
+    <tfoot>
+        Quantity: @products?.Count()
+    </tfoot>
+</table>
 
 @code {
 
-    private IEnumerable<Product> products;
+    private IEnumerable<Product>? products;
 
     protected override async Task OnInitializedAsync()
     {
