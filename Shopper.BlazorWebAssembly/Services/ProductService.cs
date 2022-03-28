@@ -13,9 +13,9 @@ namespace Shopper.BlazorWebAssembly.Services
             this.client = client;
         }
 
-        public async Task<IEnumerable<Product>> GetAsync()
+        public async Task<IEnumerable<Product>> GetAsync(CancellationToken token = default)
         {
-            return await client.GetFromJsonAsync<IEnumerable<Product>>("api/products");
+            return await client.GetFromJsonAsync<IEnumerable<Product>>("api/products", token);
         }
 
         public async Task<Product> GetByIdAsync(int id)

@@ -1,7 +1,10 @@
 ﻿@page "/products"
 
+@using System.Threading
 
 @inject IProductService productService
+@implements IAsyncDisposable
+
 
 <h3>Product List</h3>
 
@@ -43,8 +46,16 @@
 
     private IEnumerable<Product>? products;
 
+    private CancellationTokenSource cts = new CancellationTokenSource();
+
     protected override async Task OnInitializedAsync()
     {
-        products = await productService.GetAsync();
+        products = await productService.GetAsync(cts.Token);
+    }
+
+    public async ValueTask DisposeAsync()
+    {
+        cts.Cancel();
+        cts.Dispose();
     }
 }

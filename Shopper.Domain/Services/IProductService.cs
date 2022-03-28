@@ -9,7 +9,7 @@ namespace Shopper.Domain.Services
 {
     public interface IProductService
     {
-        Task<IEnumerable<Product>> GetAsync();
+        Task<IEnumerable<Product>> GetAsync(CancellationToken token = default);
         Task<Product> GetByIdAsync(int id);
     }
 }
