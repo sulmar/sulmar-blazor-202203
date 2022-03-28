@@ -1,16 +1,24 @@
 ﻿using Bogus;
 using Shopper.Domain.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace Shopper.Infrastructure.Fakers
+namespace Shopper.Infrastructure.Fakers;
+
+// dotnet add package Bogus
+public class ProductFaker : Faker<Product>
 {
-    // dotnet add package Bogus
-    public class ProductFaker : Faker<Product>
-    {
+    readonly decimal[] discounts = new decimal[] { 0.05m, 0.1m, 0.15m, 0.2m };
 
-    }
+    public ProductFaker()
+    {
+        StrictMode(true);
+        RuleFor(p => p.Id, f => f.IndexFaker);
+        RuleFor(p => p.Name, f => f.Commerce.ProductName());
+        RuleFor(p => p.Description, f => f.Commerce.ProductDescription());
+        RuleFor(p => p.Color, f => f.Commerce.Color());
+        RuleFor(p => p.Price, f => decimal.Parse(f.Commerce.Price()));
+        RuleFor(p => p.ImageLink, f => f.Image.PicsumUrl());
+        RuleFor(p => p.HasDiscount, f => f.Random.Bool(0.2f));
+        RuleFor(p => p.Discount, (f, product) => product.HasDiscount ? f.PickRandom(discounts) : null);
+        RuleFor(p => p.Supplier, f => f.Company.CompanyName());
+    }    
 }
