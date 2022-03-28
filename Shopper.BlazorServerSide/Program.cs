@@ -6,6 +6,7 @@ using Shopper.Domain.Models;
 using Shopper.Domain.Repositories;
 using Shopper.Infrastructure;
 using Shopper.Infrastructure.Fakers;
+using Shopper.BlazorServerSide.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -14,8 +15,7 @@ builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
 builder.Services.AddSingleton<WeatherForecastService>();
 
-builder.Services.AddSingleton<IProductRepository, FakeProductRepository>();
-builder.Services.AddSingleton<Faker<Product>, ProductFaker>();
+builder.Services.AddFakeServices();
 
 
 var app = builder.Build();
