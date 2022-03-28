@@ -10,7 +10,7 @@ public class ProductFaker : Faker<Product>
 
     public ProductFaker()
     {
-        StrictMode(true);
+        StrictMode(true);   // pilnuje czy wszystkie właściwości modelu są objęte regułą
         RuleFor(p => p.Id, f => f.IndexFaker);
         RuleFor(p => p.Name, f => f.Commerce.ProductName());
         RuleFor(p => p.Description, f => f.Commerce.ProductDescription());

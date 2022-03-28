@@ -6,4 +6,9 @@
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Shopper.Domain\Shopper.Domain.csproj" />
+    <ProjectReference Include="..\Shopper.Infrastructure\Shopper.Infrastructure.csproj" />
+  </ItemGroup>
+
 </Project>

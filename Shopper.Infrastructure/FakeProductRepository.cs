@@ -1,4 +1,5 @@
-﻿using Shopper.Domain.Models;
+﻿using Bogus;
+using Shopper.Domain.Models;
 using Shopper.Domain.Repositories;
 
 namespace Shopper.Infrastructure
@@ -7,6 +8,12 @@ namespace Shopper.Infrastructure
     {
         private IDictionary<int, Product> _products;
 
+        public FakeProductRepository(Faker<Product> faker)
+        {
+            var list = faker.Generate(100);
+
+            _products = list.ToDictionary(p => p.Id);
+        }
 
 
         public Task AddAsync(Product product)

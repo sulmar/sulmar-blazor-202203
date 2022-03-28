@@ -1,9 +1,26 @@
 ﻿@page "/products"
-
+@inject IProductRepository productRepository
 
 <h3>Products</h3>
 
-<p>@message</p>
+<ul>
+    @foreach(var product in products)
+    {
+        <li>@product.Name</li>
+    }
+</ul>
+
+@code {
+    private IEnumerable<Product> products;
+
+
+    protected override async Task OnInitializedAsync()
+    {
+        products = await productRepository.GetAsync();
+    }
+}
+
+
 
 
 
