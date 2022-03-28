@@ -1,7 +1,7 @@
-using Bogus;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
 using Shopper.BlazorServerSide.Data;
+using Bogus;
 using Shopper.Domain.Models;
 using Shopper.Domain.Repositories;
 using Shopper.Infrastructure;
@@ -13,6 +13,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
 builder.Services.AddSingleton<WeatherForecastService>();
+
 builder.Services.AddSingleton<IProductRepository, FakeProductRepository>();
 builder.Services.AddSingleton<Faker<Product>, ProductFaker>();
 

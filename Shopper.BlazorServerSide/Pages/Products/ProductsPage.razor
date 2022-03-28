@@ -3,12 +3,41 @@
 
 <h3>Products</h3>
 
-<ul class="list-group">
+@*
+    <ul class="list-group">
     @foreach(var product in products)
     {
         <li class="list-group-item">@product.Name</li>
     }
 </ul>
+*@
+
+<table>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Color</th>
+            <th>Price</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach(var product in products)
+        {
+            <tr>
+                <td>@product.Name</td>
+                <td>@product.Color</td>
+                <td>@product.Price</td>
+            </tr>
+        }
+    </tbody>
+
+    <tfoot>
+        Quantity: @products.Count()
+    </tfoot>
+</table>
+
+
 
 @code {
     private IEnumerable<Product> products;
