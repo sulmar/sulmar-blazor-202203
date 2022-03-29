@@ -3,7 +3,9 @@
 
     @foreach(TabPage tabPage in Pages)
     {   
-        <button type="button" class="btn btn-secondary" @onclick=@( ()=> SelectPage(@tabPage) )>@tabPage.Caption</button>
+        @*<button type="button" class="btn btn-secondary" @onclick=@( ()=> SelectPage(@tabPage) )>@tabPage.Caption</button>*@
+
+        <button type="button" class="btn btn-secondary" @onclick=OnClick(tabPage)>@tabPage.Caption</button>
     }
   
 </div>
@@ -15,22 +17,25 @@
 
 @code {
 
+    private Action OnClick(TabPage tabPage) => () => SelectedTabPage = tabPage;
+
     [Parameter]
     public RenderFragment ChildContent { get; set; }
 
     private List<TabPage> Pages = new List<TabPage>();
 
-
     public TabPage SelectedTabPage { get; set; }
-
-    private void SelectPage(TabPage tabPage)
-    {
-        SelectedTabPage = tabPage;
-    }
 
     internal void AddPage(TabPage tabPage)
     {
         Pages.Add(tabPage);
+
+        if (Pages.Count==1)
+        {
+            SelectedTabPage = tabPage;
+
+            // OnClick(tabPage);
+        }
 
         StateHasChanged();
     }

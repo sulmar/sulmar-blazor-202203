@@ -1,6 +1,9 @@
 ﻿
-@ChildContent
 
+@if (Parent.SelectedTabPage == this)
+{
+    @ChildContent
+}
 
 @code {
 
@@ -21,6 +24,7 @@
         }
 
         Parent.AddPage(this);
+
 
         base.OnInitialized();
 
