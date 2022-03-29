@@ -3,56 +3,19 @@
 
 <h3>Products</h3>
 
-
 <SearchBarComponent OnSearch="HandleSearch" />
 
-@*<SearchBarComponent OnSearch="async ()=> products = await productRepository.GetByColor(filter)" />*@
-
-@*
-    <ul class="list-group">
-    @foreach(var product in products)
-    {
-        <li class="list-group-item">@product.Name</li>
-    }
-</ul>
-*@
-
-<table class="table table-hover">
-    <thead>
-        <tr>
-            <th scope="col">Name</th>
-            <th scope="col">Color</th>
-            <th scope="col">Price</th>
-        </tr>
-    </thead>
-
-    <tbody>
-
-        @if (products.Any())
-        {
-            @foreach (var product in products)
-            {
-                <ProductItemComponent Product=@product />
-            }
-        }
-        else
-        {
-            <tr>
-                <td colspan="3" >Cannot find products</td>
-            </tr>
-        }
-
-    </tbody>
-
-    <tfoot>
-        Quantity: @products.Count()
-    </tfoot>
-</table>
-
+<TableTemplate Items="products" Context="Product" Columns="columns">    
+    <RowTemplate>        
+        <ProductItemComponent Product="Product" />        
+    </RowTemplate>
+</TableTemplate>
 
 
 @code {
     private IEnumerable<Product> products;
+
+    private IEnumerable<string> columns = new List<string> { "Name", "Color", "Unit Price" };
 
     protected override async Task OnInitializedAsync()
     {
