@@ -11,7 +11,7 @@
         <p class="card-text">@product?.Description</p>
     </div>
     <div class="card-footer">
-        @product?.Price.ToString("C")
+        @product?.Price.ToString("C")   
     </div>
 </div>
 
@@ -26,6 +26,8 @@
     protected override async Task OnInitializedAsync()
     {
         product = await productService.GetByIdAsync(Id);
+
+        
     }
 
 }

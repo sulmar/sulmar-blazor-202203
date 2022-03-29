@@ -7,9 +7,7 @@ using System.Threading.Tasks;
 
 namespace Shopper.Domain.Services
 {
-    public interface IProductService
+    public interface IProductService : IEntityService<Product>
     {
-        Task<IEnumerable<Product>> GetAsync(CancellationToken token = default);
-        Task<Product> GetByIdAsync(int id);
     }
 }

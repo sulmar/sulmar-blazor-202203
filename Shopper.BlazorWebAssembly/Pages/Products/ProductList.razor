@@ -6,39 +6,46 @@
 
 <h3>Product List</h3>
 
-
-<table class="table table-hover">
-    <thead>
-        <tr>
-            <th scope="col">Name</th>
-            <th scope="col">Color</th>
-            <th scope="col">Price</th>
-        </tr>
-    </thead>
-
-    <tbody>
-
-        @if (products!=null && products.Any())
-        {
-            @foreach (var product in products)
-            {
-                
-                <ProductItemComponent Product=@product />
-            }
-        }
-        else
-        {
+@if (isLoading)
+{
+    <div class="spinner-border"></div>
+}
+else
+{
+    <table class="table table-hover">
+        <thead>
             <tr>
-                <td colspan="3" >Cannot find products</td>
+                <th scope="col">Name</th>
+                <th scope="col">Color</th>
+                <th scope="col">Price</th>
             </tr>
-        }
+        </thead>
 
-    </tbody>
+        <tbody>
 
-    <tfoot>
-        Quantity: @products?.Count()
-    </tfoot>
-</table>
+            @if (products != null && products.Any())
+            {
+                @foreach (var product in products)
+                {
+
+                    <ProductItemComponent Product=@product />
+                }
+            }
+            else
+            {
+                <tr>
+                    <td colspan="3">Cannot find products</td>
+                </tr>
+            }
+
+        </tbody>
+
+        <tfoot>
+            Quantity: @products?.Count()
+        </tfoot>
+    </table>
+
+}
 
 @code {
 
@@ -46,9 +53,17 @@
 
     private CancellationTokenSource cts = new CancellationTokenSource();
 
+    private bool isLoading;
+
     protected override async Task OnInitializedAsync()
     {
+        isLoading = true;
+
         products = await productService.GetAsync(cts.Token);
+
+        isLoading = false;
+
+        StateHasChanged();
     }
 
     public async ValueTask DisposeAsync()

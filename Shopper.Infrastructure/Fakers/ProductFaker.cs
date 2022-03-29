@@ -23,4 +23,3 @@ public class ProductFaker : Faker<Product>
     }    
 }
 
-
