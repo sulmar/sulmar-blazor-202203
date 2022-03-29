@@ -10,7 +10,7 @@ namespace Shopper.Infrastructure
 
         public FakeProductRepository(Faker<Product> faker)
         {
-            var list = faker.Generate(10_000);
+            var list = faker.Generate(1000);
 
             _products = list.ToDictionary(p => p.Id);
         }
