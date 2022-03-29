@@ -22,3 +22,5 @@ public class ProductFaker : Faker<Product>
         RuleFor(p => p.Supplier, f => f.Company.CompanyName());
     }    
 }
+
+
