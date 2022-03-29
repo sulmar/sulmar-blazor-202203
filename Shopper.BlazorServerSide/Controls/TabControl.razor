@@ -5,7 +5,7 @@
     {   
         @*<button type="button" class="btn btn-secondary" @onclick=@( ()=> SelectPage(@tabPage) )>@tabPage.Caption</button>*@
 
-        <button type="button" class="btn btn-secondary" @onclick=OnClick(tabPage)>@tabPage.Caption</button>
+        <button type="button" class="btn @GetButtonClass(tabPage)" @onclick=OnClick(tabPage)>@tabPage.Caption</button>
     }
   
 </div>
@@ -17,7 +17,15 @@
 
 @code {
 
+    private string GetButtonClass(TabPage tabPage) => tabPage == SelectedTabPage ? SelectedTabPageClass : RegularTabPageClass;
+
     private Action OnClick(TabPage tabPage) => () => SelectedTabPage = tabPage;
+
+    [Parameter]
+    public string SelectedTabPageClass { get; set; } = "btn-primary";
+
+    [Parameter]
+    public string RegularTabPageClass { get; set; } = "btn-secondary";
 
     [Parameter]
     public RenderFragment ChildContent { get; set; }
@@ -32,9 +40,7 @@
 
         if (Pages.Count==1)
         {
-            SelectedTabPage = tabPage;
-
-            // OnClick(tabPage);
+            OnClick(tabPage).Invoke();
         }
 
         StateHasChanged();
