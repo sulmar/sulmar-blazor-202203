@@ -1,0 +1,38 @@
+﻿
+<div class="btn-group" role="group" aria-label="Basic example">
+
+    @foreach(TabPage tabPage in Pages)
+    {   
+        <button type="button" class="btn btn-secondary" @onclick=@( ()=> SelectPage(@tabPage) )>@tabPage.Caption</button>
+    }
+  
+</div>
+
+<CascadingValue Value="this">
+    @ChildContent
+</CascadingValue>
+
+
+@code {
+
+    [Parameter]
+    public RenderFragment ChildContent { get; set; }
+
+    private List<TabPage> Pages = new List<TabPage>();
+
+
+    public TabPage SelectedTabPage { get; set; }
+
+    private void SelectPage(TabPage tabPage)
+    {
+        SelectedTabPage = tabPage;
+    }
+
+    internal void AddPage(TabPage tabPage)
+    {
+        Pages.Add(tabPage);
+
+        StateHasChanged();
+    }
+
+}
