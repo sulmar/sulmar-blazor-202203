@@ -15,7 +15,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Shopper.BlazorWebAssembly",
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Shopper.Api", "Shopper.Api\Shopper.Api.csproj", "{A46D7B22-C626-461A-9D4F-AF3228639623}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shopper.Blazor.Components", "Shopper.Blazor.Components\Shopper.Blazor.Components.csproj", "{AB7FA804-C3DD-425A-A31E-CB792A20C97C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Shopper.Blazor.Components", "Shopper.Blazor.Components\Shopper.Blazor.Components.csproj", "{AB7FA804-C3DD-425A-A31E-CB792A20C97C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
