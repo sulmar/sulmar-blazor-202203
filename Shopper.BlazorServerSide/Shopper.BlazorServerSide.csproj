@@ -7,6 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Shopper.Blazor.Components\Shopper.Blazor.Components.csproj" />
     <ProjectReference Include="..\Shopper.Domain\Shopper.Domain.csproj" />
     <ProjectReference Include="..\Shopper.Infrastructure\Shopper.Infrastructure.csproj" />
   </ItemGroup>

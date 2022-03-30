@@ -1,0 +1,43 @@
+﻿@page "/dashboard"
+
+
+<h3>Dashboard</h3>
+
+<div class="container-fluid">
+
+    <div class="flex">
+     
+
+        <CardComponent Title="Earnings (Annual)" Icon="oi-dollar">
+            <Content>
+                $215,000
+            </Content>
+        </CardComponent>
+
+        <CardComponent Title="Tasks" Icon="oi-clipboard">
+            <Content>
+                <ProgressBarComponent Value="50" />
+            </Content>
+        </CardComponent>
+
+        <CardComponent Title="Pending Requests" Icon="oi-comment-square">
+            <Content>
+                18
+            </Content>
+        </CardComponent>
+
+        <CardComponent Title="Learning" Icon="oi-clipboard">
+            <Content>
+                <ProgressBarComponent Value="20" />
+            </Content>
+        </CardComponent>
+
+
+    </div>
+
+</div>
+
+
+@code {
+
+}
