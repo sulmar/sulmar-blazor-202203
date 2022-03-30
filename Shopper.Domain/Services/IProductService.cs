@@ -9,5 +9,6 @@ namespace Shopper.Domain.Services
 {
     public interface IProductService : IEntityService<Product>
     {
+        
     }
 }

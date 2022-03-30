@@ -12,5 +12,6 @@ public interface IEntityRepository<TEntity>
     Task UpdateAsync(TEntity entity);
     Task RemoveAsync(int id);
     Task<bool> ExistsAsync(int id);
+    Task<int> GetCount();
 }
 
