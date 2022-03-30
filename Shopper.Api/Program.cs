@@ -52,8 +52,14 @@ app.MapGet("api/products", async
 app.MapGet("api/products/{id:int}", async
     (IProductRepository productRepository, int id) => await productRepository.GetByIdAsync(id));
 
+// GET api/products/count
+app.MapGet("api/products/count",  async (IProductRepository productRepository) => await productRepository.GetCount());
+
 // GET api/customers
 app.MapGet("api/customers", async (ICustomerRepository customerRepository) => await customerRepository.GetAsync());
+
+// GET api/customers/count
+app.MapGet("api/customers/count", async (ICustomerRepository customerRepository) => await customerRepository.GetCount());
 
 // GET api/customers/{id}
 app.MapGet("api/customers/{id:int}", async (ICustomerRepository customerRepository, int id) => await customerRepository.GetByIdAsync(id));
