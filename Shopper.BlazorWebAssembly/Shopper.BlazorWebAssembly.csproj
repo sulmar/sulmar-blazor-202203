@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.BlazorWebAssembly">
+﻿<Project Sdk="Microsoft.NET.Sdk.BlazorWebAssembly">
 
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
@@ -12,6 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Shopper.Blazor.Components\Shopper.Blazor.Components.csproj" />
     <ProjectReference Include="..\Shopper.Domain\Shopper.Domain.csproj" />
   </ItemGroup>
 
