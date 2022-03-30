@@ -14,6 +14,8 @@ builder.Services.AddSingleton<Faker<Product>, ProductFaker>();
 builder.Services.AddSingleton<ICustomerRepository, FakeCustomerRepository>();
 builder.Services.AddSingleton<Faker<Customer>, CustomerFaker>();
 
+builder.Services.AddSingleton<IColorRepository, FakeColorRepository>();
+
 builder.Services.AddEndpointsApiExplorer();
 
 // Install-Package Swashbuckle.AspNetCore - Version 6.2.3
@@ -27,7 +29,7 @@ builder.Services.AddSwaggerGen();
 //        .AllowAnyMethod()
 //        .AllowAnyHeader());
 
-builder.Services.Configure<JsonOptions>(o => o.SerializerOptions.Converters.Add(new JsonStringEnumConverter()));
+// builder.Services.Configure<JsonOptions>(o => o.SerializerOptions.Converters.Add(new JsonStringEnumConverter()));
 
 
 builder.Services.AddCors(
@@ -72,6 +74,12 @@ app.MapGet("api/customers/{id:int}", async (ICustomerRepository customerReposito
 
 // GET api/customers/search?name="John"
 app.MapGet("api/customers/search", async (ICustomerRepository customerRepository, string name) => await customerRepository.GetByName(name));
+
+// GET api/products/colors
+app.MapGet("api/products/colors", async (IColorRepository colorRepository) => await colorRepository.Get());
+    
+
+
 
 if (app.Environment.IsDevelopment())
 {

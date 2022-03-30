@@ -11,4 +11,10 @@ namespace Shopper.Domain.Services
     {
         
     }
+
+    public interface IColorService
+    {
+        Task<IEnumerable<string>> GetAsync();
+    }
+
 }

@@ -15,11 +15,12 @@ public class ProductFaker : Faker<Product>
         RuleFor(p => p.Name, f => f.Commerce.ProductName());
         RuleFor(p => p.Description, f => f.Commerce.ProductDescription());
         RuleFor(p => p.Color, f => f.Commerce.Color());
-        RuleFor(p => p.Price, f => decimal.Parse(f.Commerce.Price()));
+        RuleFor(p => p.Price, f => decimal.Parse(f.Commerce.Price(1, 100)));
         RuleFor(p => p.ImageLink, f => f.Image.PicsumUrl());
         RuleFor(p => p.HasDiscount, f => f.Random.Bool(0.2f));
         RuleFor(p => p.Discount, (f, product) => product.HasDiscount ? f.PickRandom(discounts) : null);
         RuleFor(p => p.Supplier, f => f.Company.CompanyName());
+        RuleFor(p => p.Size, f => f.PickRandom<SizeType>());
     }    
 }
 

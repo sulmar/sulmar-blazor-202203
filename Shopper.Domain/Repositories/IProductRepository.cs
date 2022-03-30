@@ -6,5 +6,6 @@ public interface IProductRepository : IEntityRepository<Product>
 {
     Task<IEnumerable<Product>> GetByColor(string color);
     
+    
 }
 

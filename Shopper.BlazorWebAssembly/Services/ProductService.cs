@@ -4,6 +4,7 @@ using System.Net.Http.Json;
 
 namespace Shopper.BlazorWebAssembly.Services
 {
+
     public class ProductService : IProductService
     {
         private readonly HttpClient client;

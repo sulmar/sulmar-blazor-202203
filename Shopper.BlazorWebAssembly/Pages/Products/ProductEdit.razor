@@ -1,4 +1,5 @@
 ﻿@inject IProductService productService
+@inject IColorService colorService
 @inject NavigationManager navigationManager
 
 @page "/products/edit/{id:int}"
@@ -9,18 +10,55 @@
 {
     <EditForm Model="@product" OnValidSubmit="HandleValidSubmit">
 
+        <DataAnnotationsValidator />
+
         <label for="name">Name</label>
-        <InputText id="name" @bind-Value="product.Name" />
+        <InputText id="name" @bind-Value="product.Name" class="form-control" />
+        <ValidationMessage For="@(()=>product.Name)" />
 
         <label for="color">Color</label>
-        <InputText id="color" @bind-Value="product.Color" />
+        <InputText id="color" @bind-Value="product.Color" class="form-control" />
+        <ValidationMessage For="@(()=>product.Color)" />
 
         <label for="price">Price</label>
-        <InputNumber id="price" @bind-Value="product.Price" />
+        <InputNumber id="price" @bind-Value="product.Price" class="form-control" />
+        <ValidationMessage For="@(()=>product.Price)" />
 
-        <button type="submit">Save</button>
+        <div class="form-check">
+            <label for="hasDiscount" class="form-check-label">Has Discount</label>
+            <InputCheckbox id="hasDiscount" @bind-Value="product.HasDiscount" class="form-check-input" />
+        </div>
 
-    </EditForm>
+        @if (product.HasDiscount)
+        {
+            <label for="discount">Discount</label>
+            <InputNumber id="discount" @bind-Value="product.Discount" class="form-control" />
+            <ValidationMessage For="@(()=>product.Discount)" />
+        }
+
+        <label for="color">Color</label>
+
+        <InputSelect id="color" @bind-Value="product.Color" class="form-select">
+
+            @foreach (var color in colors)
+            {
+                <option value="@color">@color</option>
+            }
+
+    </InputSelect>
+
+    <InputSelect @bind-Value="product.Size" class="form-select">
+
+        @foreach (var sizeTypes in sizeTypes)
+        {
+            <option value="@sizeTypes">@sizeTypes</option>
+        }
+
+    </InputSelect>
+
+    <button type="submit" class="btn btn-primary btn-block">Save</button>
+
+</EditForm>
 }
 
 @code {
@@ -30,9 +68,14 @@
 
     private Product product;
 
+    private IEnumerable<string> colors;
+
+    private SizeType[] sizeTypes => Enum.GetValues<SizeType>();
+
     protected override async Task OnParametersSetAsync()
     {
         product = await productService.GetByIdAsync(Id);
+        colors = await colorService.GetAsync();
 
         StateHasChanged();
     }
