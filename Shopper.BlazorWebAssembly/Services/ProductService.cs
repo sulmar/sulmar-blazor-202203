@@ -19,8 +19,6 @@ namespace Shopper.BlazorWebAssembly.Services
         {
             logger.LogInformation("GetAsync");
 
-            await Task.Delay(TimeSpan.FromSeconds(2));
-
             return await client.GetFromJsonAsync<IEnumerable<Product>>("api/products", token);
         }
 
@@ -32,6 +30,11 @@ namespace Shopper.BlazorWebAssembly.Services
         public async Task<int> GetCount()
         {
             return await client.GetFromJsonAsync<int>("api/products/count");
+        }
+
+        public async Task UpdateAsync(Product entity)
+        {
+            await client.PutAsJsonAsync($"api/products/{entity.Id}", entity);            
         }
     }
 }

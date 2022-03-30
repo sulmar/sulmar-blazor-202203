@@ -8,5 +8,6 @@ namespace Shopper.Domain.Services
         Task<IEnumerable<TEntity>> GetAsync(CancellationToken token = default);
         Task<TEntity> GetByIdAsync(int id);
         Task<int> GetCount();
+        Task UpdateAsync(TEntity entity);
     }
 }

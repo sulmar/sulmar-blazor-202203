@@ -55,6 +55,12 @@ app.MapGet("api/products/{id:int}", async
 // GET api/products/count
 app.MapGet("api/products/count",  async (IProductRepository productRepository) => await productRepository.GetCount());
 
+// PUT api/products/{id}
+app.MapPut("api/products/{id:int}", async (IProductRepository productRepository, Product product) => await productRepository.UpdateAsync(product));
+
+// PATCH api/products/{id}
+
+
 // GET api/customers
 app.MapGet("api/customers", async (ICustomerRepository customerRepository) => await customerRepository.GetAsync());
 
