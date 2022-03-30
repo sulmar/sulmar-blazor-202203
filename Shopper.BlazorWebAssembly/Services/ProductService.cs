@@ -28,5 +28,10 @@ namespace Shopper.BlazorWebAssembly.Services
         {
             return await client.GetFromJsonAsync<Product>($"api/products/{id}");
         }
+
+        public async Task<int> GetCount()
+        {
+            return await client.GetFromJsonAsync<int>("api/products/count");
+        }
     }
 }

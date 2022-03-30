@@ -1,0 +1,21 @@
+﻿@inject IProductService productService
+
+<CardComponent Title="@Title" Icon="oi-calendar">
+            <Content>
+                @count
+            </Content>
+</CardComponent>
+
+
+@code {
+
+    private int count;
+
+    [Parameter]
+    public string Title { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        count = await productService.GetCount();
+    }
+}
