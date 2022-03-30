@@ -47,6 +47,11 @@ namespace Shopper.Infrastructure
             }
         }
 
+        public Task<int> GetCount()
+        {
+            return Task.FromResult(_entities.Count);
+        }
+
         public virtual Task RemoveAsync(int id)
         {
             _entities.Remove(id);
