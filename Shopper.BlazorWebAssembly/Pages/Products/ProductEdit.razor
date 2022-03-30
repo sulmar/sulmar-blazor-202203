@@ -1,0 +1,46 @@
+﻿@inject IProductService productService
+
+@page "/products/edit/{id:int}"
+
+<h3>Product Edit</h3>
+
+@if (product != null)
+{
+    <EditForm Model="@product" OnValidSubmit="HandleValidSubmit">
+
+        <label for="name">Name</label>
+        <InputText id="name" @bind-Value="product.Name" />
+
+        <label for="color">Color</label>
+        <InputText id="color" @bind-Value="product.Color" />
+
+        <label for="price">Price</label>
+        <InputNumber id="price" @bind-Value="product.Price" />
+
+        <button type="submit">Save</button>
+
+    </EditForm>
+}
+
+@code {
+
+    [Parameter]
+    public int Id { get; set; }
+
+    private Product product;
+
+    protected override async Task OnParametersSetAsync()
+    {
+        product = await productService.GetByIdAsync(Id);
+
+        StateHasChanged();
+    }
+
+    private void HandleValidSubmit()
+    {
+        
+    }
+
+
+
+}
