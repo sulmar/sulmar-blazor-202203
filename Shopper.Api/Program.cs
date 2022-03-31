@@ -69,7 +69,9 @@ app.MapPut("api/products/{id:int}", async (IProductRepository productRepository,
 
     // await productHub.Clients.All.SendAsync("ProductChanged", product);
 
-    await productHub.Clients.All.ProductChanged(product);
+    // await productHub.Clients.All.ProductChanged(product);
+
+    await productHub.Clients.Group(product.Color).ProductChanged(product);
 
 });
 
