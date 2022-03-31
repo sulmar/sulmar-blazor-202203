@@ -3,19 +3,31 @@
 
 <h3>CustomerList</h3>
 
-@if (customers!=null)
-{
 
-<ul>
-    @foreach(var customer in customers)
-    {
-        <li>
+
+@*    <Virtualize Context="customer" Items="customers" >
+
+    <p>
+    @customer.FirstName @customer.LastName
+    </p>
+
+    </Virtualize>*@
+
+
+<Virtualize Context="customer" ItemsProvider="LoadCustomers">
+
+    <ItemContent>
+        <p>
             @customer.FirstName @customer.LastName
-        </li>
-    }
-</ul>
-}
-else
-{
-    <p>Loading...</p>
-}
+        </p>
+    </ItemContent>
+
+    <Placeholder>
+        <p>Loading...</p>
+    </Placeholder>
+
+
+
+</Virtualize>
+
+

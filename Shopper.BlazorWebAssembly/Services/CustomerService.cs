@@ -28,9 +28,9 @@ namespace Shopper.BlazorWebAssembly.Services
             throw new NotImplementedException();
         }
 
-        public Task<int> GetCount()
+        public async Task<int> GetCount()
         {
-            throw new NotImplementedException();
+            return await client.GetFromJsonAsync<int>("api/customers/count");
         }
 
         public Task UpdateAsync(Customer entity)
