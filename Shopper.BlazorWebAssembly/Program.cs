@@ -43,4 +43,9 @@ builder.Services.AddBlazoredToast();
 builder.Services
     .AddSingleton<IJSInProcessRuntime>(sp=>(IJSInProcessRuntime)sp.GetRequiredService<IJSRuntime>());
 
+
+builder.Services.AddSingleton<StateContainer>();
+builder.Services.AddSingleton<IStorageProvider, LocalStorageProvider>();
+
+
 await builder.Build().RunAsync();
