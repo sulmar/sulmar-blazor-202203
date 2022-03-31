@@ -1,0 +1,40 @@
+﻿@page "/timer"
+@using Microsoft.AspNetCore.SignalR.Client
+@inject HubConnection connection
+@implements IAsyncDisposable
+
+<h3>Timer</h3>
+
+
+@currentTime
+
+
+@code {
+
+    private DateTime currentTime;
+
+    protected override async Task OnInitializedAsync()
+    {        
+        Console.WriteLine("Connecting...");
+
+        await connection.StartAsync();
+
+        Console.WriteLine($"Connected. {connection.ConnectionId}");
+
+        await foreach(var date in connection.StreamAsync<DateTime>("Streaming"))
+        {
+            Console.WriteLine(date);
+
+            currentTime = date;
+
+            StateHasChanged();
+
+        }
+    }
+
+    public async ValueTask DisposeAsync()
+    {
+        await connection.StopAsync();
+    }
+
+}

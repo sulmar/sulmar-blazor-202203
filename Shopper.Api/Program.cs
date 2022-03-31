@@ -1,5 +1,6 @@
 using Bogus;
 using Microsoft.AspNetCore.Http.Json;
+using Shopper.Api.Hubs;
 using Shopper.Domain.Models;
 using Shopper.Domain.Repositories;
 using Shopper.Infrastructure;
@@ -37,6 +38,8 @@ builder.Services.AddCors(
     options => options.SetIsOriginAllowed(origin => new Uri(origin).Host == "localhost")
     .AllowAnyHeader()
     .AllowAnyMethod()));
+
+builder.Services.AddSignalR();
 
 var app = builder.Build();
 
@@ -77,9 +80,8 @@ app.MapGet("api/customers/search", async (ICustomerRepository customerRepository
 
 // GET api/products/colors
 app.MapGet("api/products/colors", async (IColorRepository colorRepository) => await colorRepository.Get());
-    
 
-
+app.MapHub<TimerHub>("ws/current-time");
 
 if (app.Environment.IsDevelopment())
 {
