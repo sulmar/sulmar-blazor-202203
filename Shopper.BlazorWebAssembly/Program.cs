@@ -2,6 +2,7 @@ using Blazored.Toast;
 using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using Microsoft.AspNetCore.SignalR.Client;
+using Microsoft.JSInterop;
 using Shopper.BlazorWebAssembly;
 using Shopper.BlazorWebAssembly.Services;
 using Shopper.Domain.Services;
@@ -37,5 +38,9 @@ builder.Services.AddSingleton<HubConnection>(options =>
 
 // dotnet add package Blazored.Toast
 builder.Services.AddBlazoredToast();
+
+
+builder.Services
+    .AddSingleton<IJSInProcessRuntime>(sp=>(IJSInProcessRuntime)sp.GetRequiredService<IJSRuntime>());
 
 await builder.Build().RunAsync();

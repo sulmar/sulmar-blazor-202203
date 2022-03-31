@@ -1,4 +1,5 @@
-﻿
+﻿@inject IJSInProcessRuntime js
+
 <CascadingValue Value=this>
     @ChildContent
 </CascadingValue>
@@ -8,7 +9,17 @@
     [Parameter]
     public RenderFragment ChildContent { get; set; }
 
-    private int currentCount = 0;
+    private int currentCount;
+
+    protected override void OnInitialized()
+    {
+        string value = js.Invoke<string>("localStorage.getItem", "currentCount");
+
+        if (!int.TryParse(value, out currentCount))
+        {
+            currentCount = 0;
+        }
+    }
 
     public int CurrentCount
     {
@@ -19,6 +30,10 @@
         set
         {
             currentCount = value;
+
+            js.InvokeVoid("console.log", currentCount);
+
+            js.InvokeVoid("localStorage.setItem", "currentCount", currentCount);
         }
     }
 
