@@ -10,7 +10,9 @@
 {
     <EditForm EditContext="@editContext"  OnValidSubmit="HandleValidSubmit">
 
-        <DataAnnotationsValidator />
+        @*<DataAnnotationsValidator />*@
+
+        <FluentValidationValidator />
 
         <label for="name">Name</label>
         <InputText id="name" @bind-Value="product.Name" class="form-control" />

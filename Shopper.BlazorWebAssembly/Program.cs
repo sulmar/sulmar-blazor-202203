@@ -1,11 +1,14 @@
 using Blazored.Toast;
+using FluentValidation;
 using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using Microsoft.AspNetCore.SignalR.Client;
 using Microsoft.JSInterop;
 using Shopper.BlazorWebAssembly;
 using Shopper.BlazorWebAssembly.Services;
+using Shopper.Domain.Models;
 using Shopper.Domain.Services;
+using Shopper.Domain.Validators;
 
 var builder = WebAssemblyHostBuilder.CreateDefault(args);
 builder.RootComponents.Add<App>("#app");
@@ -46,6 +49,8 @@ builder.Services
 
 builder.Services.AddSingleton<StateContainer>();
 builder.Services.AddSingleton<IStorageProvider, LocalStorageProvider>();
+
+builder.Services.AddTransient<IValidator<Product>, ProductValidator>();
 
 
 await builder.Build().RunAsync();
