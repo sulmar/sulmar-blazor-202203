@@ -1,0 +1,28 @@
+﻿@using Microsoft.AspNetCore.SignalR.Client
+@inject HubConnection connection
+@inject IToastService toastService
+@implements IAsyncDisposable
+
+
+@code {
+
+   
+    protected override async Task OnInitializedAsync()
+    {
+        connection.On<Product>("ProductChanged", p =>
+        {
+            toastService.ShowInfo($"Product {p.Name} was changed.", "Product Changed");
+
+            StateHasChanged();
+
+        });
+
+        await connection.StartAsync();
+    }
+
+     public async ValueTask DisposeAsync()
+    {
+        await connection.StopAsync();
+    }
+
+}

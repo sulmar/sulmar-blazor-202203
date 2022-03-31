@@ -1,3 +1,4 @@
+using Blazored.Toast;
 using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using Microsoft.AspNetCore.SignalR.Client;
@@ -17,12 +18,24 @@ builder.Services.AddScoped<IProductService, ProductService>();
 builder.Services.AddScoped<IColorService, ColorService>();
 
 // dotnet add package Microsoft.AspNetCore.SignalR.Client
+//builder.Services.AddSingleton<HubConnection>(options =>
+//{
+//    return new HubConnectionBuilder()
+//        .WithUrl($"{baseUri}ws/current-time")
+//        .WithAutomaticReconnect()
+//        .Build();
+//});
+
 builder.Services.AddSingleton<HubConnection>(options =>
 {
     return new HubConnectionBuilder()
-        .WithUrl($"{baseUri}ws/current-time")
+        .WithUrl($"{baseUri}ws/products")
         .WithAutomaticReconnect()
         .Build();
 });
+
+
+// dotnet add package Blazored.Toast
+builder.Services.AddBlazoredToast();
 
 await builder.Build().RunAsync();

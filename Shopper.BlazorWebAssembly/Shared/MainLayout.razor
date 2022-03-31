@@ -1,6 +1,16 @@
 ﻿@inherits LayoutComponentBase
 
+
+    <BlazoredToasts
+        Position="Blazored.Toast.Configuration.ToastPosition.BottomRight"
+        Timeout="5" />
+    
+    />
+
 <div class="page">
+
+
+
     <div class="sidebar">
         <NavMenu />
     </div>
@@ -8,6 +18,8 @@
     <main>
         <div class="top-row px-4">
             <a href="https://docs.microsoft.com/aspnet/" target="_blank">About</a>
+
+            <ProductNotifierComponent />
         </div>
 
         <article class="content px-4">
@@ -15,3 +27,4 @@
         </article>
     </main>
 </div>
+

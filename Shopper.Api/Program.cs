@@ -1,5 +1,6 @@
 using Bogus;
 using Microsoft.AspNetCore.Http.Json;
+using Microsoft.AspNetCore.SignalR;
 using Shopper.Api.Hubs;
 using Shopper.Domain.Models;
 using Shopper.Domain.Repositories;
@@ -61,7 +62,13 @@ app.MapGet("api/products/{id:int}", async
 app.MapGet("api/products/count",  async (IProductRepository productRepository) => await productRepository.GetCount());
 
 // PUT api/products/{id}
-app.MapPut("api/products/{id:int}", async (IProductRepository productRepository, Product product) => await productRepository.UpdateAsync(product));
+app.MapPut("api/products/{id:int}", async (IProductRepository productRepository, IHubContext<ProductHub> productHub, Product product) =>
+{
+    await productRepository.UpdateAsync(product);
+
+    await productHub.Clients.All.SendAsync("ProductChanged", product);
+
+});
 
 // PATCH api/products/{id}
 
@@ -82,6 +89,7 @@ app.MapGet("api/customers/search", async (ICustomerRepository customerRepository
 app.MapGet("api/products/colors", async (IColorRepository colorRepository) => await colorRepository.Get());
 
 app.MapHub<TimerHub>("ws/current-time");
+app.MapHub<ProductHub>("ws/products");
 
 if (app.Environment.IsDevelopment())
 {
