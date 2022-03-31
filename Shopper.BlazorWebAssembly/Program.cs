@@ -20,6 +20,8 @@ builder.Services.AddScoped(sp => new HttpClient { BaseAddress =  baseUri });
 
 builder.Services.AddScoped<IProductService, ProductService>();
 builder.Services.AddScoped<IColorService, ColorService>();
+builder.Services.AddScoped<ICustomerService, CustomerService>();
+
 
 // dotnet add package Microsoft.AspNetCore.SignalR.Client
 //builder.Services.AddSingleton<HubConnection>(options =>
