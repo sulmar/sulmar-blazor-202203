@@ -8,7 +8,7 @@
 
 @if (product != null)
 {
-    <EditForm Model="@product" OnValidSubmit="HandleValidSubmit">
+    <EditForm EditContext="@editContext"  OnValidSubmit="HandleValidSubmit">
 
         <DataAnnotationsValidator />
 
@@ -58,10 +58,14 @@
 
     <button type="submit" class="btn btn-primary btn-block">Save</button>
 
+
+    @isDirty
+
 </EditForm>
 }
 
 @code {
+    private EditContext editContext;
 
     [Parameter]
     public int Id { get; set; }
@@ -72,9 +76,16 @@
 
     private SizeType[] sizeTypes => Enum.GetValues<SizeType>();
 
+    private bool isDirty = false;
+
     protected override async Task OnParametersSetAsync()
     {
         product = await productService.GetByIdAsync(Id);
+
+        editContext = new EditContext(product);        
+        
+        editContext.OnFieldChanged += (sender, e) => { isDirty = true; };
+
         colors = await colorService.GetAsync();
 
         StateHasChanged();
