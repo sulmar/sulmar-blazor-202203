@@ -1,0 +1,14 @@
+﻿@page "/customers"
+
+
+<h3>CustomerList</h3>
+
+
+<ul>
+    @foreach(var customer in customers)
+    {
+        <li>
+            @customer.FirstName @customer.LastName
+        </li>
+    }
+</ul>
