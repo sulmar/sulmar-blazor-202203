@@ -15,6 +15,9 @@ public class CustomerFaker : Faker<Customer>
         RuleFor(p => p.Salary, f => f.Random.Number(100, 1000).OrNull(f, 0.2f));
         RuleFor(p => p.IsRemoved, f => f.Random.Bool(0.2f).OrNull(f, 0.1f));
 
+        Ignore(p => p.Password);
+        Ignore(p => p.ConfirmPassword);
+
     }
 
 }
