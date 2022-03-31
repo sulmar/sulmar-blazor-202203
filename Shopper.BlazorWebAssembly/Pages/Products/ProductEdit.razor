@@ -83,8 +83,12 @@
         product = await productService.GetByIdAsync(Id);
 
         editContext = new EditContext(product);        
-        
-        editContext.OnFieldChanged += (sender, e) => { isDirty = true; };
+
+        editContext.OnFieldChanged += (sender, e) => {
+
+            Console.WriteLine($"{e.FieldIdentifier.FieldName} changed");
+            
+            isDirty = true; };
 
         colors = await colorService.GetAsync();
 
