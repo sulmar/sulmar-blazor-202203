@@ -6,13 +6,18 @@ namespace Shopper.Api.Hubs
     {
         private readonly ILogger<TimerHub> _logger;
 
+        public TimerHub(ILogger<TimerHub> logger)
+        {
+            _logger = logger;
+        }
+
         public override Task OnConnectedAsync()
         {
             // zła praktyka
             // _logger.LogInformation($"Connected ConnectionId: {this.Context.ConnectionId}");
 
-            // dobra praktyka
-            _logger.LogInformation("Connected ConnectionId: {0}", this.Context.ConnectionId);
+           // dobra praktyka
+             _logger.LogInformation("Connected ConnectionId: {0}", this.Context.ConnectionId);
 
             return base.OnConnectedAsync();
         }
