@@ -3,6 +3,8 @@
 
 <h3>CustomerList</h3>
 
+@if (customers!=null)
+{
 
 <ul>
     @foreach(var customer in customers)
@@ -12,3 +14,8 @@
         </li>
     }
 </ul>
+}
+else
+{
+    <p>Loading...</p>
+}

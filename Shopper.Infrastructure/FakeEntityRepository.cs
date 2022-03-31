@@ -11,7 +11,7 @@ namespace Shopper.Infrastructure
 
         public FakeEntityRepository(Faker<TEntity> faker)
         {
-            _entities = faker.Generate(100).ToDictionary(p => p.Id);    
+            _entities = faker.Generate(1000).ToDictionary(p => p.Id);    
         }
 
         public virtual Task AddAsync(TEntity entity)
