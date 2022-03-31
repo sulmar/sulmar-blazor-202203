@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.SignalR;
+using Shopper.Domain.Models;
 
 namespace Shopper.Api.Hubs
 {
@@ -9,5 +10,16 @@ namespace Shopper.Api.Hubs
             return base.OnConnectedAsync();
             
         }
+    }
+
+    public class StrongTypedProductsHub : Hub<IProductClient>
+    {
+
+    }
+
+    public interface IProductClient
+    {
+        Task ProductChanged(Product product);
+        Task ProductRemoved(Product product);
     }
 }

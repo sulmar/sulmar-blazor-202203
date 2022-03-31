@@ -62,11 +62,14 @@ app.MapGet("api/products/{id:int}", async
 app.MapGet("api/products/count",  async (IProductRepository productRepository) => await productRepository.GetCount());
 
 // PUT api/products/{id}
-app.MapPut("api/products/{id:int}", async (IProductRepository productRepository, IHubContext<ProductHub> productHub, Product product) =>
+app.MapPut("api/products/{id:int}", async (IProductRepository productRepository, 
+    IHubContext<StrongTypedProductsHub, IProductClient> productHub, Product product) =>
 {
     await productRepository.UpdateAsync(product);
 
-    await productHub.Clients.All.SendAsync("ProductChanged", product);
+    // await productHub.Clients.All.SendAsync("ProductChanged", product);
+
+    await productHub.Clients.All.ProductChanged(product);
 
 });
 
@@ -89,7 +92,7 @@ app.MapGet("api/customers/search", async (ICustomerRepository customerRepository
 app.MapGet("api/products/colors", async (IColorRepository colorRepository) => await colorRepository.Get());
 
 app.MapHub<TimerHub>("ws/current-time");
-app.MapHub<ProductHub>("ws/products");
+app.MapHub<StrongTypedProductsHub>("ws/products");
 
 if (app.Environment.IsDevelopment())
 {
