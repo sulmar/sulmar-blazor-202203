@@ -1,11 +1,14 @@
 using Bogus;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Http.Json;
 using Microsoft.AspNetCore.SignalR;
+using Microsoft.IdentityModel.Tokens;
 using Shopper.Api.Hubs;
 using Shopper.Domain.Models;
 using Shopper.Domain.Repositories;
 using Shopper.Infrastructure;
 using Shopper.Infrastructure.Fakers;
+using System.Text;
 using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -44,7 +47,41 @@ builder.Services.AddSignalR();
 
 
 builder.Services.AddAuthorization();
-builder.Services.AddAuthentication();
+
+// dotnet add package Microsoft.AspNetCore.Authentication.JwtBearer
+
+builder.Services.AddAuthentication(options => 
+{
+    options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+    options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+})
+    .AddJwtBearer(options =>
+    {
+        string secretKey = "your-256-bit-secret";
+
+        options.TokenValidationParameters = new Microsoft.IdentityModel.Tokens.TokenValidationParameters
+        {
+            ValidAudience = "ABC",
+            ValidateAudience = true,
+            ValidIssuer = "ABC",
+            ValidateIssuer = true,
+            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(secretKey)),
+            ValidateIssuerSigningKey = true
+        };
+
+        // optionalne: odczyt tokena z ciasteczka
+        options.Events = new JwtBearerEvents
+        {
+            OnMessageReceived = context =>
+            {
+                context.Token = context.Request.Cookies["X-Access-Token"];
+
+                return Task.CompletedTask;
+
+            }
+        };
+    })
+    ;
 
 
 var app = builder.Build();
@@ -110,5 +147,6 @@ if (app.Environment.IsDevelopment())
 
 app.UseAuthentication();
 app.UseAuthorization();
+
 
 app.Run();
