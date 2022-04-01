@@ -17,8 +17,8 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 
-builder.Services.AddSingleton<ITokenService, JwtTokenService>();
-builder.Services.AddSingleton<IAuthService, AuthService>();
+builder.Services.AddScoped<ITokenService, JwtTokenService>();
+builder.Services.AddScoped<IAuthService, AuthService>();
 
 // dotnet add package Microsoft.EntityFrameworkCore.SqlServer
 // using Microsoft.EntityFrameworkCore
@@ -34,6 +34,9 @@ builder.Services.AddIdentity<ApplicationUser, IdentityRole>(options =>
     options.User.RequireUniqueEmail = true;
 }).AddEntityFrameworkStores<ApplicationDbContext>();
 
+
+// cmd> dotnet tool update --global dotnet-ef
+// dotnet add package Microsoft.EntityFrameworkCore.Design
 
 var app = builder.Build();
 
