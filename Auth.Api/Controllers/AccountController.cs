@@ -43,7 +43,7 @@ namespace Auth.Api.Controllers
         public async Task<ActionResult> CreateUser(
             [FromServices] UserManager<ApplicationUser> userManager, 
             [FromServices] IPasswordHasher<ApplicationUser> passwordHasher,            
-            [FromBody]RegisterViewModel model)
+            [FromBody] RegisterViewModel model)
         {
 
             if (!ModelState.IsValid)
