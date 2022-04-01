@@ -21,6 +21,7 @@ public class ProductFaker : Faker<Product>
         RuleFor(p => p.Discount, (f, product) => product.HasDiscount ? f.PickRandom(discounts) : null);
         RuleFor(p => p.Supplier, f => f.Company.CompanyName());
         RuleFor(p => p.Size, f => f.PickRandom<SizeType>());
+        RuleFor(p => p.Tags, f => f.Commerce.Categories(f.Random.Int(1, 3)));
     }    
 }
 

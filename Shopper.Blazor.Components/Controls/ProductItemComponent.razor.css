@@ -1,0 +1,11 @@
+﻿ul.horizontal {
+    list-style: none;
+}
+
+ul.horizontal li {
+    display: inline-block;
+}
+
+ul.horizontal li:not(:last-child):after {
+    content: ", ";
+}

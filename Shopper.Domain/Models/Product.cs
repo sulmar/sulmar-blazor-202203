@@ -18,6 +18,7 @@ public class Product : BaseEntity
     public string Supplier { get; set; }
     public string ImageLink { get; set; }
     public SizeType Size { get; set; }
+    public string[] Tags { get; set; }
 
 }
 
