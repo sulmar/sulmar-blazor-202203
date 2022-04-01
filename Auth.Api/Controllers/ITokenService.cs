@@ -5,6 +5,6 @@ namespace Auth.Api.Controllers
 {
     public interface ITokenService
     {
-        SecurityToken Create(LoginViewModel model);
+        SecurityToken Create(ApplicationUser model);
     }
 }

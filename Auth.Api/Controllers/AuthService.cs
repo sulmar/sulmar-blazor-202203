@@ -15,13 +15,15 @@ namespace Auth.Api.Controllers
             this.userManager = userManager;
         }
 
-        public async Task<bool> IsValidAsync(string userName, string password)
+        public async Task<(bool isValid, ApplicationUser user)> IsValidAsync(string userName, string password)
         {
             var user = await userManager.FindByNameAsync(userName);
 
             var isValid = await userManager.CheckPasswordAsync(user, password);
 
-            return isValid;
+            return (isValid, user);
         }
+
+       
     }
 }

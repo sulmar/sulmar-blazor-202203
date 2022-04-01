@@ -9,14 +9,15 @@ namespace Auth.Api.Controllers
     // dotnet add package System.IdentityModel.Tokens.Jwt
     public class JwtTokenService : ITokenService
     {
-        public SecurityToken Create(LoginViewModel model)
+        public SecurityToken Create(ApplicationUser model)
         {
             string secretKey = "your-256-bit-secret";
 
             var claims = new Claim[]
             {
-                new Claim(JwtRegisteredClaimNames.Email, "john.smith@domain.com"),
+                new Claim(JwtRegisteredClaimNames.Email, model.Email),
                 new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
+                new Claim("AccountNumber", model.Account)
             };
 
             string issuer = "ABC";

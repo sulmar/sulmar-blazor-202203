@@ -2,6 +2,6 @@
 {
     public interface IAuthService
     {
-        Task<bool> IsValidAsync(string login, string password);
+        Task<(bool isValid, ApplicationUser user)> IsValidAsync(string login, string password);
     }
 }
