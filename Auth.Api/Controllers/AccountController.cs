@@ -51,13 +51,17 @@ namespace Auth.Api.Controllers
                 return BadRequest(ModelState);
             }
 
-            ApplicationUser user = new ApplicationUser { UserName = model.UserName, Email = model.Email };
+            ApplicationUser user = new ApplicationUser { UserName = model.UserName, Email = model.Email, Account = model.Account  };
 
             user.PasswordHash = passwordHasher.HashPassword(user, model.Password);
 
-            await userManager.CreateAsync(user);
+            var result = await userManager.CreateAsync(user);
 
-            return Ok();
+            if (result.Succeeded)
+                return Ok();
+            else
+                return BadRequest(result);
+    
         }
     }
 }

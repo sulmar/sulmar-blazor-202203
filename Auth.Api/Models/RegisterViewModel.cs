@@ -6,6 +6,7 @@ namespace Auth.Api.Models
     {
         public string UserName { get; set; }
         public string Email { get; set; }
+        public string Account { get; set; }
 
         [Compare(nameof(ConfirmPassword))]
         public string Password { get; set; }
