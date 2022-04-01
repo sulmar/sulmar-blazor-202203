@@ -30,6 +30,8 @@ namespace Auth.Api.Controllers
 
                     var token = new JwtSecurityTokenHandler().WriteToken(securityToken);
 
+                    Response.Cookies.Append("X-Access-Token", token, new CookieOptions { Expires = securityToken.ValidTo, SameSite = SameSiteMode.Strict , Secure = true });
+
                     return Ok(token);
                 }
 
