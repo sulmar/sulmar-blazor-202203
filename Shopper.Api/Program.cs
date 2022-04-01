@@ -42,6 +42,11 @@ builder.Services.AddCors(
 
 builder.Services.AddSignalR();
 
+
+builder.Services.AddAuthorization();
+builder.Services.AddAuthentication();
+
+
 var app = builder.Build();
 
 app.UseCors();
@@ -52,7 +57,7 @@ app.MapGet("/", () => "Hello World!");
 
 // GET api/products
 app.MapGet("api/products", async 
-    (IProductRepository productRepository) => await productRepository.GetAsync());
+    (IProductRepository productRepository) => await productRepository.GetAsync()).RequireAuthorization();
 
 // GET api/products/{id}
 app.MapGet("api/products/{id:int}", async
@@ -101,5 +106,9 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+
+app.UseAuthentication();
+app.UseAuthorization();
 
 app.Run();
