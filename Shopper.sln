@@ -17,7 +17,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Shopper.Api", "Shopper.Api\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Shopper.Blazor.Components", "Shopper.Blazor.Components\Shopper.Blazor.Components.csproj", "{AB7FA804-C3DD-425A-A31E-CB792A20C97C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Auth.Api", "Auth.Api\Auth.Api.csproj", "{BF0BA5E1-B592-4258-A744-3F64CD362EEC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Auth.Api", "Auth.Api\Auth.Api.csproj", "{BF0BA5E1-B592-4258-A744-3F64CD362EEC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Auth.BlazorServerSide", "Auth.BlazorServerSide\Auth.BlazorServerSide.csproj", "{6D1690FE-0D3F-4CD8-B3E7-FF1B5F1C62D8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -57,6 +59,10 @@ Global
 		{BF0BA5E1-B592-4258-A744-3F64CD362EEC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BF0BA5E1-B592-4258-A744-3F64CD362EEC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BF0BA5E1-B592-4258-A744-3F64CD362EEC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6D1690FE-0D3F-4CD8-B3E7-FF1B5F1C62D8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6D1690FE-0D3F-4CD8-B3E7-FF1B5F1C62D8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6D1690FE-0D3F-4CD8-B3E7-FF1B5F1C62D8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6D1690FE-0D3F-4CD8-B3E7-FF1B5F1C62D8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
