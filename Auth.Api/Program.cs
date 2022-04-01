@@ -2,6 +2,8 @@ using Auth.Api.Controllers;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.Identity.Web;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -17,6 +19,21 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddSingleton<ITokenService, JwtTokenService>();
 builder.Services.AddSingleton<IAuthService, AuthService>();
+
+// dotnet add package Microsoft.EntityFrameworkCore.SqlServer
+// using Microsoft.EntityFrameworkCore
+
+string connectionString = builder.Configuration.GetConnectionString("MyConnection");
+
+builder.Services.AddDbContext<ApplicationDbContext>(
+    options => options.UseSqlServer(connectionString));
+
+// dotnet add package Microsoft.AspNetCore.Identity
+builder.Services.AddIdentity<ApplicationUser, IdentityRole>(options =>
+{
+    options.User.RequireUniqueEmail = true;
+}).AddEntityFrameworkStores<ApplicationDbContext>();
+
 
 var app = builder.Build();
 
