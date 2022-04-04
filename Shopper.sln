@@ -21,11 +21,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Auth.Api", "Auth.Api\Auth.A
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Auth.BlazorServerSide", "Auth.BlazorServerSide\Auth.BlazorServerSide.csproj", "{6D1690FE-0D3F-4CD8-B3E7-FF1B5F1C62D8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Auth.BlazorWebAssembly.Server", "Auth.BlazorWebAssembly\Server\Auth.BlazorWebAssembly.Server.csproj", "{20DCD0F2-3513-4F08-B9E8-60070BB6D186}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Auth.BlazorWebAssembly.Server", "Auth.BlazorWebAssembly\Server\Auth.BlazorWebAssembly.Server.csproj", "{20DCD0F2-3513-4F08-B9E8-60070BB6D186}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Auth.BlazorWebAssembly.Client", "Auth.BlazorWebAssembly\Client\Auth.BlazorWebAssembly.Client.csproj", "{6CB96EAD-01A3-4797-B684-12FDCC07569C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Auth.BlazorWebAssembly.Client", "Auth.BlazorWebAssembly\Client\Auth.BlazorWebAssembly.Client.csproj", "{6CB96EAD-01A3-4797-B684-12FDCC07569C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Auth.BlazorWebAssembly.Shared", "Auth.BlazorWebAssembly\Shared\Auth.BlazorWebAssembly.Shared.csproj", "{AA5B0D4D-1DD2-42C6-9A6F-DE0A1FED4881}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Auth.BlazorWebAssembly.Shared", "Auth.BlazorWebAssembly\Shared\Auth.BlazorWebAssembly.Shared.csproj", "{AA5B0D4D-1DD2-42C6-9A6F-DE0A1FED4881}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
