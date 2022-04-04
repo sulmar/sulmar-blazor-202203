@@ -1,0 +1,33 @@
+﻿<iframe class="pdf-viewer" src="@Source#view=@View&page=@Page&toolbar=@Toolbar" type="application/pdf" height="@Height" width="@Width" >
+    Your browser doesn't support iframes
+</iframe>
+
+@code {
+
+    [Parameter]
+    public string Source { get; set;  }
+
+    [Parameter]
+    public int Width { get; set; } = 800;
+
+    [Parameter]
+    public int Height { get; set; } = 600;
+
+    [Parameter]
+    public int Page { get; set; } = 1;
+
+    [Parameter]
+    public bool Toolbar { get; set; } = true;
+
+    [Parameter]
+    public ViewType View { get; set; }
+
+    public enum ViewType
+    {
+        Fit,
+        FitH,
+        FitV
+    }
+
+
+}
