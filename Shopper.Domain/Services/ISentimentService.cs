@@ -4,6 +4,6 @@ namespace Shopper.Domain.Services
 {
     public interface ISentimentService
     {
-        Task<Sentiment> CalculateAsync(string text);
+        Task<Sentiment> PredictAsync(string text);
     }
 }

@@ -13,7 +13,7 @@ namespace Shopper.BlazorWebAssembly.Services
             this.client = client;
         }
 
-        public async Task<Sentiment> CalculateAsync(string text)
+        public async Task<Sentiment> PredictAsync(string text)
         {
             var response = await client.PostAsJsonAsync($"api/sentiment", text);
 

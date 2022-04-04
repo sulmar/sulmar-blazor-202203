@@ -2,7 +2,7 @@
 @using Shopper.BlazorWebAssembly.Models
 @inject ISentimentService sentimentService
 
-<h3>ML.NET2</h3>
+<h3>ML.NET Sentiment</h3>
 
 
 
@@ -10,7 +10,7 @@
     <label for="text">Text</label>
     <InputText id="text" @bind-Value="request.Text" class="form-control" />
 
-    <button type="submit" class="btn btn-primary btn-block">Save</button>
+    <button type="submit" class="btn btn-primary btn-block">Predict</button>
 </EditForm>
 
 
@@ -46,7 +46,7 @@
 
     private async Task HandleValidSubmit()
     {
-        sentiment = await sentimentService.CalculateAsync(request.Text);
+        sentiment = await sentimentService.PredictAsync(request.Text);
 
         StateHasChanged();
 
