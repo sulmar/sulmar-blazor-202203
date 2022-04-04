@@ -1,9 +1,12 @@
 using Bogus;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Http.Json;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.SignalR;
+using Microsoft.Extensions.ML;
 using Microsoft.IdentityModel.Tokens;
 using Shopper.Api.Hubs;
+using Shopper.Api.Models;
 using Shopper.Domain.Models;
 using Shopper.Domain.Repositories;
 using Shopper.Infrastructure;
@@ -84,6 +87,9 @@ builder.Services.AddAuthentication(options =>
     ;
 
 
+builder.Services.AddPredictionEnginePool<SentimentInput, SentimentPrediction>()
+    .FromFile("text-sentiment-model.zip", watchForChanges: true);
+
 var app = builder.Build();
 
 app.UseCors();
@@ -94,7 +100,7 @@ app.MapGet("/", () => "Hello World!");
 
 // GET api/products
 app.MapGet("api/products", async 
-    (IProductRepository productRepository) => await productRepository.GetAsync()).RequireAuthorization();
+    (IProductRepository productRepository) => await productRepository.GetAsync());
 
 // GET api/products/{id}
 app.MapGet("api/products/{id:int}", async
@@ -134,6 +140,17 @@ app.MapGet("api/customers/search", async (ICustomerRepository customerRepository
 
 // GET api/products/colors
 app.MapGet("api/products/colors", async (IColorRepository colorRepository) => await colorRepository.Get());
+
+
+app.MapPost("api/sentiment", 
+    (PredictionEnginePool<SentimentInput, SentimentPrediction> predictionEnginePool, [FromBody] string text) =>
+{
+    var sentimentInput = new SentimentInput { Text = text };
+
+    var prediction = predictionEnginePool.Predict(sentimentInput);
+
+    return prediction;
+});
 
 app.MapHub<TimerHub>("ws/current-time");
 app.MapHub<StrongTypedProductsHub>("ws/products");

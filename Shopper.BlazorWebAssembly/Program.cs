@@ -22,6 +22,8 @@ builder.Services.AddScoped<IProductService, ProductService>();
 builder.Services.AddScoped<IColorService, ColorService>();
 builder.Services.AddScoped<ICustomerService, CustomerService>();
 
+builder.Services.AddScoped<ISentimentService, SentimentService>();
+
 
 // dotnet add package Microsoft.AspNetCore.SignalR.Client
 //builder.Services.AddSingleton<HubConnection>(options =>

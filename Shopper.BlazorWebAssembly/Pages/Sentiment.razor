@@ -1,0 +1,54 @@
+﻿@page "/sentiment"
+@using Shopper.BlazorWebAssembly.Models
+@inject ISentimentService sentimentService
+
+<h3>ML.NET2</h3>
+
+
+
+<EditForm Model=@request OnValidSubmit="HandleValidSubmit">
+    <label for="text">Text</label>
+    <InputText id="text" @bind-Value="request.Text" class="form-control" />
+
+    <button type="submit" class="btn btn-primary btn-block">Save</button>
+</EditForm>
+
+
+<div>
+
+    @if (sentiment != null)
+    {
+
+        <label>Prediction</label>
+        @if (sentiment.Prediction)
+        {
+             <span class="oi oi-arrow-circle-bottom" />
+            
+        }
+        else
+        {
+           <span class="oi oi-arrow-circle-top" />
+        }
+
+        <label>Probability: </label>
+        <p>@sentiment.Probability.ToString("P2")</p>
+
+    }
+
+</div>
+
+@code {
+
+    private SentimentRequest request = new SentimentRequest();
+
+    private Shopper.Domain.Models.Sentiment sentiment;
+
+
+    private async Task HandleValidSubmit()
+    {
+        sentiment = await sentimentService.CalculateAsync(request.Text);
+
+        StateHasChanged();
+
+    }
+}
