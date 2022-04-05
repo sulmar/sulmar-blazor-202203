@@ -27,6 +27,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Auth.BlazorWebAssembly.Clie
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Auth.BlazorWebAssembly.Shared", "Auth.BlazorWebAssembly\Shared\Auth.BlazorWebAssembly.Shared.csproj", "{AA5B0D4D-1DD2-42C6-9A6F-DE0A1FED4881}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shopper.BlazorServerSide.Tests", "Shopper.BlazorServerSide.Tests\Shopper.BlazorServerSide.Tests.csproj", "{EC25E11C-B413-40C6-A3AA-577D82BEA767}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -81,6 +83,10 @@ Global
 		{AA5B0D4D-1DD2-42C6-9A6F-DE0A1FED4881}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AA5B0D4D-1DD2-42C6-9A6F-DE0A1FED4881}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AA5B0D4D-1DD2-42C6-9A6F-DE0A1FED4881}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EC25E11C-B413-40C6-A3AA-577D82BEA767}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EC25E11C-B413-40C6-A3AA-577D82BEA767}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EC25E11C-B413-40C6-A3AA-577D82BEA767}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EC25E11C-B413-40C6-A3AA-577D82BEA767}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
