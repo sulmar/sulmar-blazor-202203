@@ -7,3 +7,20 @@
 Welcome to your new app.
 
 <SurveyPrompt Title="How is Blazor working for you?" />
+
+<label>Your name:</label>
+<input type="text" @ref="NameInputElementRef" />
+
+@code {
+
+    private ElementReference NameInputElementRef;
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            await NameInputElementRef.FocusAsync();
+        }
+    }
+    
+}
