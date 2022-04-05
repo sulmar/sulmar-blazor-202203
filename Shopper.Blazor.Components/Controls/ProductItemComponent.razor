@@ -19,24 +19,45 @@
     </td>
     <td>
         <div>
-             <NavLink class="btn btn-primary btn-circle" href="@( $"/products/Edit/{@Product.Id}" )">
+             <NavLink class="btn btn-primary" href="@( $"/products/Edit/{@Product.Id}" )">
                 <span class="oi oi-eye" aria-hidden="true"></span>
             </NavLink>
 
-            <button class="btn btn-primary btn-circle" title="Edit" @onclick="Edit">
+            <button class="btn btn-primary" title="Edit" @onclick="Edit">
                 <span class="oi oi-pencil" aria-hidden="true"></span>
+            </button>          
+
+            <button class="btn btn-danger" title="Remove" @onclick="Remove">
+                <span class="oi oi-delete" aria-hidden="true"></span>
             </button>          
         </div>
     </td>
 </tr>
+
+<DialogComponent @ref="Dialog" Title="Remove" Message=@($"Are you sure remove {Product.Name}?") OnClose="@OnClose">
+
+</DialogComponent>
 
 @code {
 
     [Parameter]
     public Product Product { get; set; }
 
+    DialogComponent Dialog { get; set; }
+
+
     private void Edit()
     {
         navigationManager.NavigateTo($"/products/Edit/{Product.Id}");
+    }
+
+    private void Remove()
+    {
+        Dialog.Show();
+    }
+
+    private async Task OnClose(bool result)
+    {
+       
     }
 }

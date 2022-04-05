@@ -141,6 +141,25 @@ app.MapGet("api/customers/search", async (ICustomerRepository customerRepository
 // GET api/products/colors
 app.MapGet("api/products/colors", async (IColorRepository colorRepository) => await colorRepository.Get());
 
+app.MapPost("/upload", async (HttpRequest request) =>
+{
+    if (!request.HasFormContentType)
+        return Results.BadRequest();
+
+    var form = await request.ReadFormAsync();
+    var formFile = form.Files["file"];
+
+    if (formFile is null || formFile.Length == 0)
+        return Results.BadRequest();
+
+    await using var stream = formFile.OpenReadStream();
+
+    var reader = new StreamReader(stream);
+    var text = await reader.ReadToEndAsync();
+
+    return Results.Ok(text);
+}).Accepts<IFormFile>("multipart/form-data");
+
 
 app.MapPost("api/sentiment", 
     (PredictionEnginePool<SentimentInput, SentimentPrediction> predictionEnginePool, [FromBody] string text) =>
