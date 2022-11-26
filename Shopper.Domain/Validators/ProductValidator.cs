@@ -21,15 +21,7 @@ namespace Shopper.Domain.Validators
             RuleFor(p => p.Name).NotNull().MaximumLength(50);
             RuleFor(p => p.Description).NotNull().MaximumLength(50);
             RuleFor(p => p.Discount).GreaterThan(0).When(p => p.HasDiscount);
-            RuleFor(p => p.Supplier).Test();
+            RuleFor(p => p.Supplier).MyRule();
         }     
-    }
-
-    public static class Ext
-    {
-        public static IRuleBuilderOptions<T, TProperty?> Test<T, TProperty>(this IRuleBuilder<T, TProperty?> ruleBuilder)
-        {            
-            return ruleBuilder.NotNull();
-        }
     }
 }
